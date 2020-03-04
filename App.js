@@ -1,3 +1,5 @@
+import './bodges';
+
 // Import React Navigation
 import {
   createBottomTabNavigator,
