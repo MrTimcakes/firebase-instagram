@@ -1,3 +1,5 @@
+import firebaseConfig from './firebaseConfig'
+
 import uuid from 'uuid';
 
 import getUserInfo from './utils/getUserInfo';
@@ -8,20 +10,14 @@ const firebase = require('firebase');
 // Required for side-effects
 require('firebase/firestore');
 
-const collectionName = 'snack-SJucFknGX';
+const collectionName = 'InstaClone';
 
 class Fire {
   constructor() {
-    firebase.initializeApp({
-      apiKey: 'AIzaSyAQan8_IJ6fY6F8E06FMDKVbWlrdI75mvA',
-      authDomain: 'instahamm-b09ce.firebaseapp.com',
-      databaseURL: 'https://instahamm-b09ce.firebaseio.com',
-      projectId: 'instahamm-b09ce',
-      storageBucket: 'instahamm-b09ce.appspot.com',
-      messagingSenderId: '716190466061',
-    });
-    // Some nonsense...
-    firebase.firestore().settings({ timestampsInSnapshots: true });
+    // Initialize Firebase if not already
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
 
     // Listen for auth
     firebase.auth().onAuthStateChanged(async user => {
